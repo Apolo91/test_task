@@ -1,11 +1,3 @@
-SET TIME ZONE 'Europe/Moscow';
-
-CREATE TABLE IF NOT EXISTS test_table (
-    id SERIAL PRIMARY KEY,
-    data VARCHAR (10),
-    date TIMESTAMPTZ
-);
-
 CREATE OR REPLACE FUNCTION clean_table() RETURNS TRIGGER AS $clean_table$
     declare
     count_row integer;
@@ -24,3 +16,6 @@ CREATE OR REPLACE FUNCTION clean_table() RETURNS TRIGGER AS $clean_table$
 $clean_table$ LANGUAGE plpgsql;
 
 CREATE TRIGGER clean_table AFTER INSERT OR UPDATE ON test_table EXECUTE FUNCTION clean_table();
+
+INSERT INTO test_table (data, date)
+VALUES('asdasdasd',NOW());
