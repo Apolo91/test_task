@@ -15,11 +15,15 @@ while True:
        # cursor = connection.cursor()
        res = str(''.join(random.choices(string.ascii_uppercase + string.digits, k=10)))
        cursor.execute(f"INSERT INTO test_table (data, date) VALUES('{res}',NOW());")
-       cursor.execute("SELECT id,data from test_table order by id;")
-       data = cursor.fetchall()
-       logging.info(data)
-       time.sleep(1)
        connection.commit()
+       cursor.execute("SELECT id,data,date from test_table order by date desc limit 1;")
+       data = cursor.fetchall()
+       if data == [] :
+              logging.info(f"table data cleared")
+       else:
+             logging.info(f"data is recorded: {data}")        
+       connection.commit()
+       time.sleep(5)
 
 
    
