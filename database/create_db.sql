@@ -33,35 +33,3 @@ CREATE TABLE IF NOT EXISTS servers (
     srv_id INT PRIMARY KEY,
     srv_name VARCHAR (30)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

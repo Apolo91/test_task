@@ -13,17 +13,18 @@ cursor.execute("SET TIME ZONE 'Europe/Moscow';")
 logging.info('Application Started')
 while True:
        # cursor = connection.cursor()
-       res = str(''.join(random.choices(string.ascii_uppercase + string.digits, k=10)))
-       cursor.execute(f"INSERT INTO test_table (data, date) VALUES('{res}',NOW());")
+       data_string = str(''.join(random.choices(string.ascii_uppercase + string.digits, k=10)))
+       cursor.execute(f"INSERT INTO test_table (data, date) VALUES('{data_string}',NOW());")
        connection.commit()
        cursor.execute("SELECT id,data,date from test_table order by date desc limit 1;")
        data = cursor.fetchall()
+       # print(type(data))
        if data == [] :
               logging.info(f"table data cleared")
        else:
-             logging.info(f"data is recorded: {data}")        
+             logging.info(f"data is recorded  (ID: {data[0][0]}, DATA: {data[0][1]}, DATE: {data[0][2]})")        
        connection.commit()
-       time.sleep(5)
+       time.sleep(1)
 
 
    
