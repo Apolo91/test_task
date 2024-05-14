@@ -33,3 +33,46 @@ CREATE TABLE IF NOT EXISTS servers (
     srv_id INT PRIMARY KEY,
     srv_name VARCHAR (30)
 );
+
+CREATE TABLE IF NOT EXISTS server_hdd (
+    hdd_id INT PRIMARY KEY,
+    srv_id INT, 
+    hdd_name VARCHAR (50),
+    hdd_capacity INT,
+    CONSTRAINT fk_server
+      FOREIGN KEY(srv_id) 
+        REFERENCES servers(srv_id)
+);
+
+CREATE TABLE IF NOT EXISTS hdd_monitoring (
+    hdd_id INT,
+    used_space INT, 
+    formatted_space INT, 
+    monitoring_date  TIMESTAMPTZ,
+    CONSTRAINT fk_server_hdd
+      FOREIGN KEY(hdd_id) 
+        REFERENCES server_hdd(hdd_id)
+);
+
+
+
+
+
+
+
+
+INSERT INTO servers (srv_id, srv_name) VALUES
+(1,'vlg-zmon-prx01'),
+(2,'vlg-zmon-prx02'),
+(3,'kvk-zmon-prx01'),
+(4,'kvk-zmon-prx02'),
+(5,'dv-zmon-prx01'),
+(6,'dv-zmon-prx02'),
+(7,'msk-zmon-prx01'),
+(8,'msk-zmon-prx02'),
+(9,'sib-zmon-prx01')
+(10,'sib-zmon-prx02');
+
+
+
+
