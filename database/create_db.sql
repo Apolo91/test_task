@@ -53,26 +53,3 @@ CREATE TABLE IF NOT EXISTS hdd_monitoring (
       FOREIGN KEY(hdd_id) 
         REFERENCES server_hdd(hdd_id)
 );
-
-
-
-
-
-
-
-
-INSERT INTO servers (srv_id, srv_name) VALUES
-(1,'vlg-zmon-prx01'),
-(2,'vlg-zmon-prx02'),
-(3,'kvk-zmon-prx01'),
-(4,'kvk-zmon-prx02'),
-(5,'dv-zmon-prx01'),
-(6,'dv-zmon-prx02'),
-(7,'msk-zmon-prx01'),
-(8,'msk-zmon-prx02'),
-(9,'sib-zmon-prx01')
-(10,'sib-zmon-prx02');
-
-
-
-

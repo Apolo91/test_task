@@ -43,4 +43,4 @@ while True:
        else:
              logging.info(f"data is recorded  (ID: {data[0][0]}, DATA: {data[0][1]}, DATE: {data[0][2]})")        
        connection.commit()
-       time.sleep(1)
+       time.sleep(60)
