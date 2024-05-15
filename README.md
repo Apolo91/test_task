@@ -89,10 +89,11 @@ duplicate key value violates unique constraint "server_hdd_pkey"
 
 ```sql
 select s.srv_name,sh.hdd_name,sh.hdd_capacity,
-lag(hm.used_space) over (order by hm.hdd_id,hm.monitoring_date rows between 10 PRECEDING and CURRENT ROW) as previos_used_space,
+lag(hm.used_space) over (partition by hm.hdd_id rows between 10 PRECEDING and CURRENT ROW) as previos_used_space,
 hm.used_space,
 hm.monitoring_date
 from server_hdd sh join servers s on sh.srv_id = s.srv_id 
 right join hdd_monitoring hm on hm.hdd_id = sh.hdd_id 
-where sh.hdd_capacity in (select max(sh.hdd_capacity) as max_capacity  from server_hdd sh group by sh.srv_id)  
+where sh.hdd_capacity in (select max(sh.hdd_capacity) as max_capacity  from server_hdd sh group by sh.srv_id)
+order by s.srv_name ,hm.monitoring_date 
 ```
